@@ -2,12 +2,14 @@ import tweeter_api as tw
 import csv
 from textblob import TextBlob as tb
 
+tw.check("Working")
 store={}
 def call_params():
 	api=tw.get_api()
+	print("1")
 	return api
 
-def retrive_tweets(api):
+def get_tweets(api):
 	tweets=api.search("EndGame")
 	return tweets
 	
@@ -18,7 +20,7 @@ def find_sentiment(api,tweets):
 			analysis = tb(tweet.text)
 			store["text"]=str(analysis)
 			#print(store)
-			#print(analysis)
+			print(analysis)
 			if analysis.sentiment.polarity >=0 :
 				tweetSentiments=True
 				store["result"]="Positive"
@@ -33,7 +35,9 @@ def find_sentiment(api,tweets):
 
 def main():
 	api=call_params()
-	tweets = retrive_tweets(api)
+	tweets = get_tweets(api)
+	#for tweet in tweets:
+	#	print(tweet.text)
 	find_sentiment(api,tweets)
 
 if __name__ =='__main__':
