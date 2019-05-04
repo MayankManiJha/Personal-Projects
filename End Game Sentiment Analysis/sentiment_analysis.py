@@ -33,7 +33,8 @@ def find_sentiment(api,tweets):
 
 def main():
 	api=call_params()
-	find_sentiment(api,retrive_tweets(api))
+	tweets = retrive_tweets(api)
+	find_sentiment(api,tweets)
 
 if __name__ =='__main__':
 	main()
